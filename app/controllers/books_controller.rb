@@ -3,16 +3,15 @@ before_action :authenticate_user!, except: [:top, :about]
 
   def show
     @book = Book.find(params[:id])
-    @books = Book.all
-    @user = @book.user
     @book_comment = BookComment.new
+    @user = @book_comment.user
   end
 
   def index
     @books = Book.all
     @book = Book.new
-    @user = current_user
-    user = @book.user
+    @user = current_user #不要
+    user = @book.user #不要
   end
 
   def create
@@ -26,7 +25,7 @@ before_action :authenticate_user!, except: [:top, :about]
     end
   end
 
-  def edit
+  def edit  #全部不要
     @book = Book.find(params[:id])
     user = @book.user
     unless user.id == current_user.id
@@ -35,7 +34,7 @@ before_action :authenticate_user!, except: [:top, :about]
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]) #不要
     if @book.update(book_params)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
@@ -54,4 +53,5 @@ before_action :authenticate_user!, except: [:top, :about]
   def book_params
     params.require(:book).permit(:title, :body)
   end
+
 end
