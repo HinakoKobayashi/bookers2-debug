@@ -15,6 +15,8 @@
         <p id="notice"><%= notice %></p>
       </main>
 
+    <%= render 'searches/search', users: @users, books: @books %>
+
     <%= yield %>
 
     <%= render 'layouts/footer' %>
