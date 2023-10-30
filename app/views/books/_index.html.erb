@@ -12,29 +12,16 @@
   <tbody>
     <% books.each do |book| %>
       <tr>
-        <td><%= link_to(book.user) do %>
+        <td><%= link_to book.user do %>
           <%= image_tag book.user.get_profile_image(50,50) %>
           <% end %>
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        <td>
-          <% if book.favorited_by?(current_user) %>
-            <p>
-              <%= link_to book_favorites_path(book), method: :delete do %>
-                <i class="fa-solid fa-heart" style="color: #e22012;"> <%= book.favorites.count %></i>
-
-              <% end %>
-            </p>
-              <% else %>
-            <p>
-              <%= link_to book_favorites_path(book), method: :post do %>
-                <i class="fa-solid fa-heart" style="color: #0683c1;"> <%= book.favorites.count %></i>
-              <% end %>
-            </p>
-          <% end %>
+        <td id="favorite-btn<%= book.id %>">
+          <%= render "favorites/favorite-btn", book: book %>
         </td>
-        <td>コメント件数：<%= book.book_comments.count %></td>
+        <td id="book-comments<%= @book.id %>">コメント件数：<%= book.book_comments.count %></td>
       </tr>
     <% end %>
   </tbody>

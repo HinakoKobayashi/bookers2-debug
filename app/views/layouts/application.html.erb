@@ -15,7 +15,9 @@
         <p id="notice"><%= notice %></p>
       </main>
 
-    <%= render 'searches/search', users: @users, books: @books %>
+  <% if user_signed_in? %>
+    <%= render 'searches/search' %>
+  <% end %>
 
     <%= yield %>
 
