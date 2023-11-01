@@ -10,8 +10,6 @@ before_action :authenticate_user!, except: [:top, :about]
   def index
     @books = Book.all
     @book = Book.new
-    @user = current_user #不要
-    user = @book.user #不要
   end
 
   def create
