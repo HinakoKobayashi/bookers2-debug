@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @followings = @user.followings
+    @followers = @user.followers
   end
 
   def index
@@ -37,4 +39,15 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
+  def follows
+    user = User.find(params[:id])
+    @users = user.followings.page(params[:page]).per(3).reverse_order
+  end
+    # フォロワー一覧
+    def followers
+      user = User.find(params[:id])
+      @users = user.followers.page(params[:page]).per(3).reverse_order
+    end
+
 end
