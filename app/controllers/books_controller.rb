@@ -4,7 +4,6 @@ before_action :authenticate_user!, except: [:top, :about]
   def show
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
-    @user = @book_comment.user
   end
 
   def index
@@ -32,7 +31,6 @@ before_action :authenticate_user!, except: [:top, :about]
   end
 
   def update
-    @book = Book.find(params[:id]) #不要
     if @book.update(book_params)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
