@@ -2,7 +2,7 @@
   <%= flash[:notice] %>
   <div class='row'>
     <div class='col-md-3'>
-      <%= render "users/info", user: @user %>
+      <%= render "users/info", user: current_user %>
       <%= render "books/form", book: @book %>
     </div>
 
